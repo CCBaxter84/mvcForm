@@ -1,0 +1,16 @@
+.form-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  height: max-content;
+}
+
+.input-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-label {
+  margin-right: 1rem;
+}
