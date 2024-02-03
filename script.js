@@ -1,23 +1,3 @@
-class Model {
-  constructor() {
-    this.firstName = ""
-    this.secondName = ""
-    this.email = ""
-    this.username = ""
-    this.password = ""
-  }
-
-  setState(obj) {
-    const keys = Object.keys(obj)
-    for (let index = 0; index < keys.length; index++) {
-      const key = keys[index]
-      const lookup = this[key]
-      if (typeof lookup !== "string") continue
-      this[key] = obj[key]
-    }
-  }
-}
-
 class View {
   constructor(optionsList) {
     this.optionsList = optionsList
