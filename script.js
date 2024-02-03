@@ -11,7 +11,8 @@ class Model {
     const keys = Object.keys(obj)
     for (let index = 0; index < keys.length; index++) {
       const key = keys[index]
-      if (!this[key]) continue
+      const lookup = this[key]
+      if (typeof lookup !== "string") continue
       this[key] = obj[key]
     }
   }
@@ -46,7 +47,6 @@ class View {
 
     this.optionsList.forEach(opt => {
       const entry = this.createEntry(opt)
-      console.log("entry", entry)
       form.append(entry)
     })
 
@@ -63,25 +63,44 @@ class View {
     return label
   }
 
-  createInput(id) {
-    return this.createElement({
-      tag: "input", id: this.getInputClassName(id)
+  createInput(id, name) {
+    const input = this.createElement({
+      tag: "input", id: this.getInputIdAtt(id)
     })
+    const type = (name === "password") ? "password" : "text"
+    input.setAttribute("type", type)
+    return input
   }
 
   createEntry(opt) {
     const pTag = this.createElement({ 
       tag: "p", className: "input-block" })
-    console.log("pTag", pTag)
-    const inputTag = this.createInput(opt.id)
-    const inputClassName = this.getInputClassName(opt.id)
-    const labelTag = this.createLabel(inputClassName, opt.text)
+    const inputTag = this.createInput(opt.id, opt.name)
+    inputTag.classList.add("form-input")
+    inputTag.setAttribute("name", opt.name)
+    const inputId = this.getInputIdAtt(opt.id)
+    const labelTag = this.createLabel(inputId, opt.text)
     pTag.append(labelTag, inputTag)
     return pTag
   }
 
-  getInputClassName(id) {
+  getInputIdAtt(id) {
     return `${id}-input`
+  }
+
+  bindInputElement(inputTag, handler) {
+    inputTag.addEventListener("input", event => {
+      const { value, name } = event.target
+      handler({ [name]: value })
+    })
+  }
+
+  bindInputElements(handler) {
+    const inputs = document.getElementsByClassName("form-input")
+    for (let index = 0; index < inputs.length; index++) {
+      const inputTag = inputs[index]
+      this.bindInputElement(inputTag, handler)
+    }
   }
 }
 
@@ -89,19 +108,26 @@ class Controller {
   constructor(model, view) {
     this.model = model
     this.view = view
+
+    this.view.bindInputElements(this.handleChange.bind(this))
+  }
+
+  handleChange(obj) {
+    this.model.setState(obj)
   }
 }
 class Option {
-  constructor(id, text) {
+  constructor(id, name, text) {
     this.id = id
+    this.name = name
     this.text = text
   }
 }
 const optionsList = [
-  new Option("first-name", "First Name"),
-  new Option("second-name", "Second Name"),
-  new Option("email", "Email"),
-  new Option("username", "Username"),
-  new Option("password", "Password")
+  new Option("first-name", "firstName", "First Name"),
+  new Option("second-name", "secondName", "Second Name"),
+  new Option("email", "email", "Email"),
+  new Option("username", "username", "Username"),
+  new Option("password", "password", "Password")
 ]
 const app = new Controller(new Model(optionsList), new View(optionsList))
