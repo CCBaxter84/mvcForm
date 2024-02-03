@@ -1,8 +1,19 @@
 class Model {
-  constructor(optionsList) {
-    optionsList.forEach(it => {
-      this[it.state] = ""
-    })
+  constructor() {
+    this.firstName = ""
+    this.secondName = ""
+    this.email = ""
+    this.username = ""
+    this.password = ""
+  }
+
+  setState(obj) {
+    const keys = Object.keys(obj)
+    for (let index = 0; index < keys.length; index++) {
+      const key = keys[index]
+      if (!this[key]) continue
+      this[key] = obj[key]
+    }
   }
 }
 
@@ -81,17 +92,16 @@ class Controller {
   }
 }
 class Option {
-  constructor(id, state, text) {
+  constructor(id, text) {
     this.id = id
-    this.state = state
     this.text = text
   }
 }
 const optionsList = [
-  new Option("first-name", "firstName", "First Name"),
-  new Option("second-name", "secondName", "Second Name"),
-  new Option("email", "email", "Email"),
-  new Option("username", "username", "Username"),
-  new Option("password", "password", "Password")
+  new Option("first-name", "First Name"),
+  new Option("second-name", "Second Name"),
+  new Option("email", "Email"),
+  new Option("username", "Username"),
+  new Option("password", "Password")
 ]
 const app = new Controller(new Model(optionsList), new View(optionsList))
