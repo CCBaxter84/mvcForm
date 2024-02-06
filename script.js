@@ -24,7 +24,6 @@ class View {
     this.optionsList = optionsList
     this.app = this.getElement("#root")
     this.form = this.createForm()
-
     this.app.append(this.form)
   }
 
