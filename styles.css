@@ -1,5 +1,5 @@
 .form-container {
-  margin-top: 2rem;
+  margin-top: 5rem;
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
@@ -9,8 +9,25 @@
 .input-block {
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+  font-size: x-large;
 }
 
 .form-label {
   margin-right: 1rem;
+}
+
+body {
+  background-color: aquamarine;
+  color: navy;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input {
+  background-color: azure;
+  border-radius: 5px;
+  border: 1px solid navy;
+  font-size: x-large;
+  padding-left: 1rem;
+  width: 300px;
 }
