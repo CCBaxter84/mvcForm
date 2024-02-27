@@ -1,7 +1,7 @@
 class Model {
   constructor() {
     this.firstName = ""
-    this.secondName = ""
+    this.lastName = ""
     this.email = ""
     this.username = ""
     this.password = ""
@@ -125,7 +125,7 @@ class Option {
 }
 const optionsList = [
   new Option("first-name", "firstName", "First Name"),
-  new Option("second-name", "secondName", "Second Name"),
+  new Option("last-name", "lastName", "Last Name"),
   new Option("email", "email", "Email"),
   new Option("username", "username", "Username"),
   new Option("password", "password", "Password")
