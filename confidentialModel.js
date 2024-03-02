@@ -1,3 +1,18 @@
+// function Model() {
+//   let password = ""
+  
+//   return {
+//     firstname: "",
+//     firstName: "",
+//     secondName: "",
+//     email: "",
+//     username: "",
+//     setPassword(value) {
+//       password = value
+//     }
+//   }
+// }
+
 class Model {
   constructor() {
     let password = ""
@@ -6,9 +21,6 @@ class Model {
     this.email = ""
     this.username = ""
 
-    this.getPassword = () => {
-      return password
-    }
     this.setPassword = value => {
       password = value
     }
@@ -25,7 +37,5 @@ class Model {
         this[key] = obj[key]
       }
     }
-    console.log('state', this)
-    console.log('password', this.getPassword())
   }
 }
