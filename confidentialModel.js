@@ -1,18 +1,3 @@
-// function Model() {
-//   let password = ""
-  
-//   return {
-//     firstname: "",
-//     firstName: "",
-//     secondName: "",
-//     email: "",
-//     username: "",
-//     setPassword(value) {
-//       password = value
-//     }
-//   }
-// }
-
 class Model {
   constructor() {
     let password = ""
@@ -39,3 +24,18 @@ class Model {
     }
   }
 }
+
+// function Model() {
+//   let password = ""
+  
+//   return {
+//     firstname: "",
+//     firstName: "",
+//     secondName: "",
+//     email: "",
+//     username: "",
+//     setPassword(value) {
+//       password = value
+//     }
+//   }
+// }
