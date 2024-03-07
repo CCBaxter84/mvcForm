@@ -1,11 +1,11 @@
 class Model {
   constructor() {
-    let password = ""
     this.firstName = ""
     this.secondName = ""
     this.email = ""
     this.username = ""
 
+    let password = ""
     this.setPassword = value => {
       password = value
     }
